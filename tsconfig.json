@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "sourceMap": true
+    },
+    "include": [
+        "src/**/*" // Adjust the path to where your TypeScript files are
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
