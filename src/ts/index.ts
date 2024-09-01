@@ -1,10 +1,9 @@
-function greet(name: string): string {
+import { Application, Assets, Sprite } from 'pixi.js';
+import '../styles/style.less';
+import { Constants } from './constant/constants';
+import updateLoader from './loader/loader';
 
-    return `Hello, ${name}!`;
-  
-  }
-  
-  const user = 'TypeScript Developer';
-  
-  
-  console.log(greet(user));
+const msg: string = 'I Like you, shruti!';
+console.log(msg);
+
+setTimeout(updateLoader, Constants.hideLoaderDelay);

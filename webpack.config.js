@@ -18,6 +18,14 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',  // Injects styles into the DOM
+                    'css-loader',    // Translates CSS into CommonJS
+                    'less-loader'    // Compiles Less to CSS
+                ],
+            },
         ],
     },
 

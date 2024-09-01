@@ -1,0 +1,44 @@
+/* src/styles/main.less */
+
+@primary-color: #000000;
+@secondary-color: #ffffff;
+@dark: #292929;
+@font-stack: 'Arial', sans-serif;
+
+body {
+    font-family: @font-stack;
+    color: @primary-color;
+    background-color: @dark;
+    margin: 0;
+    padding: 0;
+}
+
+#myCanvas {
+    display: none;
+}
+
+.loader {
+    width: auto;
+    height: 100%;
+
+    .background {
+        background-image: url(../assets/loadingBG.JPG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        width: 100vw;
+        height: 100vh;
+        // min-height: 500px;
+        // max-height: 800px;
+        position: absolute;
+    }
+
+    .loading {
+        font: 28px Arial bold;
+        font-family: fantasy;
+        text-align: center;
+        position: relative;
+        top: 80vh;
+    }
+}
