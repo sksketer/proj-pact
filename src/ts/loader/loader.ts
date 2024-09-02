@@ -1,4 +1,4 @@
-import { Constants } from "../constant/constants";
+import { Constants } from "../constant/Constants";
 import { Application, Assets, Sprite } from 'pixi.js';
 
 
