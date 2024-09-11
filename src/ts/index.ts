@@ -3,7 +3,6 @@ import { Constants } from './constant/Constants';
 import { Game as MainGame } from './Game';
 import { IGame } from '../interface/Interface';
 import '../styles/style.less';
-import updateLoader from './loader/loader';
 
 const msg: string = 'I Like you, shruti!';
 console.log(msg);
@@ -16,6 +15,7 @@ let Game: IGame = {};
 
 /** The PixiJS app Application instance, shared across the project */
 const app = new Application();
+(globalThis as any).__PIXI_APP__ = app;
 
 const init = async () => {   
 
@@ -27,7 +27,6 @@ const init = async () => {
     Game.currentGame = app;
     Game.constants = Constants;
 
-    // Setup assets bundles (see assets.ts) and start up loading everything in background
     await Assets.init();
 
     new MainGame();
