@@ -1,9 +1,10 @@
 export enum Constants {
+    // Number-constants
+    HUNDERED = "100",
+    
     // Loader
     loader = "loader",
     loadingMeter = "loading",
-    hideLoaderDelay = 4,
-    loadingTickUpTime = 40,
 
     // Canvas
     myCanvas = "myCanvas",

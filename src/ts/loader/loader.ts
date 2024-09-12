@@ -1,64 +1,59 @@
 import { Constants } from "../constant/Constants";
-import { Application, Assets, Sprite } from 'pixi.js';
-import * as fs from "fs";
-import * as path from "path";
-
+import { Assets } from 'pixi.js';
 
 class Loader {
 
     private assetsList: any = {};
     public loader: HTMLCollectionOf<Element> = document.getElementsByClassName(Constants.loader);
+    private loadedAssets: number = 0;
 
+    /** hide the game loader and show the game canvas */
     public hideLoader(): void {
         const loadingMeter: any = this.loader[0].children[1];
-        loadingMeter.textContent = '100%';
-        if (loadingMeter.textContent === '100%') {
+        loadingMeter.textContent = `${Constants.HUNDERED}%`;
+        if (loadingMeter.textContent === `${Constants.HUNDERED}%`) {
             (this.loader[0] as HTMLElement).style.display = 'none';
-            const canvas: any = document.getElementById('myCanvas');
+            const canvas: any = document.getElementById(Constants.myCanvas);
             (canvas).style.display = 'block';
         }
     };
 
-    public updateLoader(): void {
+    /** update loader percentage */
+    public updateLoader(percentage: number): void {
         const counterDiv: any = document.getElementsByClassName('loading');
-        let counter = 0;
 
-        const interval = setInterval(() => {
-            if (counterDiv?.length && counter <= 100) {
-                counterDiv[0].textContent = `${counter}%`;
-                counter++;
-            } else {
-                clearInterval(interval);
-                setTimeout(this.hideLoader.bind(this), (Constants.hideLoaderDelay / 2));
-            }
-        }, Constants.loadingTickUpTime);
+        if (percentage >= 100) {
+            this.hideLoader();
+        } else {
+            counterDiv[0].textContent = `${percentage}%`;
+        }
     };
 
+    /** handle game assets loading and update loader */
     public startLoading(assetsList?: any): void {
         const baseURL = `${window.location.protocol}//${window.location.hostname}:9000/assets/`;
-        const paths: string[] = this.getAllSrc(assetsList);
-        paths.forEach((path: string) => {
+        this.assetsList = this.getAllSrc(assetsList);
+        const gameAssets: string[] = this.assetsList;
+        const numberOfAssets: number = gameAssets.length;
+
+        gameAssets.forEach((path: string) => {
             const fullURL: string = baseURL + path;
-            console.error(fullURL);
             Assets.add({ alias: path, src: fullURL });
-            // Assets.load(fullURL);
-            const app = (window as any).game.currentGame;
-            (window as any).game.cache = Assets.load(path).then(() => {
-                this.updateLoader();
+            Assets.load(path).then((res) => {
+                const loadingPercentage: number = Math.floor(Number(Constants.HUNDERED) / (numberOfAssets - this.loadedAssets++));
+                this.updateLoader(loadingPercentage);
+                (window as any).game.assetsCache.push(res);
             });
         });
-        // Assets.load([paths[0], paths[1]]);
     };
 
+    /** return all assets name w.r.t @param assetsList */
     private getAllSrc(assetsList: any): string[] {
         const srcArray: string[] = [];
 
-        // Iterate over each bundle
         for (const bundle of assetsList.bundles) {
-            // Iterate over each asset in the current bundle
             for (const asset of bundle.assets) {
-                // Add the src value to the array
-                srcArray.push(asset.src);
+                srcArray.push(`${bundle.name}/${asset.src}`);
             }
         }
 

@@ -1,11 +1,11 @@
-import { Application, Assets, Sprite } from 'pixi.js';
+import { Application, Assets } from 'pixi.js';
 import { Constants } from './constant/Constants';
 import { Game as MainGame } from './Game';
 import { IGame } from '../interface/Interface';
 import '../styles/style.less';
 
 const msg: string = 'I Like you, shruti!';
-console.log(msg);
+console.warn('%c I like you, shruti!', 'color: Yellow;');
 
 /** ----------------------------------- */
 
@@ -26,10 +26,12 @@ const init = async () => {
     
     Game.currentGame = app;
     Game.constants = Constants;
+    Game.assetsCache = [];
 
     await Assets.init();
 
-    new MainGame();
+    const mainGame = new MainGame();
+    mainGame.startLoading();
 
 }
 

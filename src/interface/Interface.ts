@@ -4,4 +4,5 @@ import { Constants } from "../ts/constant/Constants";
 export interface IGame {
     currentGame?: Application;
     constants?: typeof Constants;
+    assetsCache?: any;
 }
