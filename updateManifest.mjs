@@ -50,4 +50,16 @@ const generateAssetsList = (basePath) => {
 const basePath = path.join(process.cwd(), 'src/assets'); // Adjust this path to your assets folder
 const assetsList = generateAssetsList(basePath);
 
-console.log(JSON.stringify(assetsList, null, 2)); // To view the generated assets list
+// console.log(JSON.stringify(assetsList, null, 2)); // To view the generated assets list
+
+const objectString = `export const assetsList = ${JSON.stringify(assetsList, null, 2)};\n`;
+
+const filePath = "./src/manifest/assetsList.ts";
+// Write the object data to a file named 'data.js'
+fs.writeFile(filePath, objectString, (err) => {
+    if (err) {
+        console.error('Error writing to file', err);
+    } else {
+        console.log('Object data written successfully to data.js');
+    }
+});
