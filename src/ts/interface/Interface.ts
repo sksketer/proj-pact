@@ -1,5 +1,5 @@
 import { Application } from "pixi.js";
-import { Constants } from "../ts/constant/Constants";
+import { Constants } from "../constant/Constants";
 
 export interface IGame {
     currentGame?: Application;

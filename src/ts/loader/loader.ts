@@ -13,14 +13,15 @@ class Loader {
         loadingMeter.textContent = `${Constants.HUNDERED}%`;
         if (loadingMeter.textContent === `${Constants.HUNDERED}%`) {
             (this.loader[0] as HTMLElement).style.display = 'none';
-            const canvas: any = document.getElementById(Constants.myCanvas);
-            (canvas).style.display = 'block';
+            // const canvas: any = document.getElementById(Constants.myCanvas);
+            // (canvas).style.display = 'block';
         }
     };
 
     /** update loader percentage */
     public updateLoader(percentage: number): void {
         const counterDiv: any = document.getElementsByClassName('loading');
+        console.log("Assets load percentage: ", percentage);
 
         if (percentage >= 100) {
             this.hideLoader();
