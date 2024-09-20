@@ -5,7 +5,7 @@ import { IGame } from './interface/Interface';
 import '../styles/style.less';
 
 const msg: string = 'I Like you, shruti!';
-console.warn('%c I like you, shruti!', 'color: Yellow;');
+console.warn(msg);
 
 /** ----------------------------------- */
 
