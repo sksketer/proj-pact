@@ -17,13 +17,13 @@ let Game: IGame = {};
 const app = new Application();
 (globalThis as any).__PIXI_APP__ = app;
 
-const init = async () => {   
+const init = async () => {
 
-    await app.init().then((res: any) => {
+    await app.init({ background: '#1099bb', resizeTo: window }).then((res: any) => {
         console.warn('promis resolve: ', res);
         document.body.appendChild(app.canvas);
     });
-    
+
     Game.currentGame = app;
     Game.constants = Constants;
     Game.assetsCache = [];

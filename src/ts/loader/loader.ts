@@ -22,7 +22,11 @@ class Loader {
         console.log("Assets load percentage: ", percentage);
 
         if (percentage >= 100) {
-            this.hideLoader();
+            const event = new CustomEvent("loadingDone", {
+                detail: this.hideLoader.bind(this)
+            });
+            dispatchEvent(event);
+            // this.hideLoader();
         } else {
             counterDiv[0].textContent = `${percentage}%`;
         }
@@ -40,8 +44,8 @@ class Loader {
             Assets.add({ alias: path, src: fullURL });
             Assets.load(path).then((res) => {
                 const loadingPercentage: number = Math.floor(Number(Constants.HUNDERED) / (numberOfAssets - this.loadedAssets++));
+                (window as any).game.assetsCache.push({name: path.split(`/`)[1].split(`.`)[0], texture: res});
                 this.updateLoader(loadingPercentage);
-                (window as any).game.assetsCache.push(res);
             });
         });
     };

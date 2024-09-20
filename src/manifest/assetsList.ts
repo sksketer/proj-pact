@@ -14,6 +14,11 @@ export const assetsList = {
       "name": "maingame",
       "assets": [
         {
+          "name": "bonus_game",
+          "src": "bonus_game.png",
+          "alias": ""
+        },
+        {
           "name": "button",
           "src": "button.png",
           "alias": ""
@@ -24,13 +29,63 @@ export const assetsList = {
           "alias": ""
         },
         {
-          "name": "sk1",
-          "src": "sk1.jpg",
+          "name": "H1_game",
+          "src": "H1_game.png",
           "alias": ""
         },
         {
-          "name": "sk2",
-          "src": "sk2.jpg",
+          "name": "H2_game",
+          "src": "H2_game.png",
+          "alias": ""
+        },
+        {
+          "name": "H3_game",
+          "src": "H3_game.png",
+          "alias": ""
+        },
+        {
+          "name": "H4_game",
+          "src": "H4_game.png",
+          "alias": ""
+        },
+        {
+          "name": "H5_game",
+          "src": "H5_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L1_game",
+          "src": "L1_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L2_game",
+          "src": "L2_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L3_game",
+          "src": "L3_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L4_game",
+          "src": "L4_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L5_game",
+          "src": "L5_game.png",
+          "alias": ""
+        },
+        {
+          "name": "L6_game",
+          "src": "L6_game.png",
+          "alias": ""
+        },
+        {
+          "name": "Wild_game",
+          "src": "Wild_game.png",
           "alias": ""
         },
         {
