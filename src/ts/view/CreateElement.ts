@@ -2,16 +2,21 @@ import { Container, Sprite } from "pixi.js";
 
 export class CreateElement {
 
+    private viewComponents: Array<Container| Sprite> = [];
+
+
     public _add_(parent: any, child: any): void {
         if (parent) {
             parent.addChild(child);
         } else {
             (window as any).game.currentGame.stage.addChild(child);
         }
+        this.viewComponents.push(child);
     }
 
     public createImage(props: any): Sprite {
         const image = new Sprite(this.getTexture(props.texture));
+        props.name && (image.name = props.name);
         image.position.set(props.x || 0, props.y || 0);
         image.scale.set(props.scaleX || 1, props.scaleY || 1);
         this._add_(props.parent, image);
@@ -19,10 +24,16 @@ export class CreateElement {
         return image;
     }
 
+    public createSymbol(props: any): Sprite {
+        props.texture = this.getSymbolNameByID(props.id);
+        return this.createImage(props);
+    }
+
     public createContainer(props: any): Container {
         const container = new Container();
         container.name = props.name;
-        this._add_(props.param, container);
+        container.position.set(props.x || 0, props.y || 0);
+        this._add_(props.parent, container);
 
         return container;
     }
@@ -35,4 +46,21 @@ export class CreateElement {
             }
         }
     }
+
+    private getSymbolNameByID(id: number): string {
+        const symbolsArray: string[] = ["bonus_game", "Wild_game", "H5_game", "L1_game", "L2_game", "L3_game", "L4_game", "L5_game", "L4_game"];
+
+        const randomNumber: number = this.randomIntFromInterval(0, symbolsArray.length-1);
+
+        return symbolsArray[randomNumber];
+    }
+
+    private randomIntFromInterval(min: number, max: number): number { 
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    public getAllViewComponents(): Array<Container | Sprite> {
+        return this.viewComponents;
+    }
+
 }

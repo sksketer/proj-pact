@@ -1,5 +1,8 @@
 import { assetsList } from "../manifest/assetsList";
+import { GameController } from "./controller/GameController";
+import { IGame } from "./interface/Interface";
 import Loader from "./loader/loader";
+import { GameModel } from "./parser/gameModel";
 import { GameView } from "./view/GameView";
 
 export class Game {
@@ -10,12 +13,16 @@ export class Game {
 
     private openGame(): void {
         console.log("open game request send from here...");
+        (((window as any).game as IGame).model as GameModel).setGameConfig({
+            grid: "3x3", reels: 3, symbolPerReel: 3
+        });
     }
 
     private handler(): void {
         console.log("handler request send from here...");
         addEventListener("loadingDone", (data: any) => {
-            new GameView(data.detail);
+            const gameView: GameView = new GameView(data.detail);
+            new GameController(gameView);
         });
     }
 

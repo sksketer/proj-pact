@@ -3,6 +3,7 @@ import { Constants } from './constant/Constants';
 import { Game as MainGame } from './Game';
 import { IGame } from './interface/Interface';
 import '../styles/style.less';
+import { GameModel } from './parser/gameModel';
 
 const msg: string = 'I Like you, shruti!';
 console.warn(msg);
@@ -12,6 +13,7 @@ console.warn(msg);
 // store Game reference in Global game object
 let Game: IGame = {};
 (window as any).game = Game;
+(window as any).game.model = new GameModel();;
 
 /** The PixiJS app Application instance, shared across the project */
 const app = new Application();
