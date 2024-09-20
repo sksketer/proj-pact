@@ -1,6 +1,6 @@
 import { Application } from "pixi.js";
 import { Constants } from "../constant/Constants";
-import { GameModel } from "../parser/gameModel";
+import { GameModel } from "../parser/GameModel";
 
 export interface IGame {
     currentGame?: Application;

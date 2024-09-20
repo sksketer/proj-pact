@@ -1,7 +1,7 @@
 import { Container, Sprite } from "pixi.js";
 import { CreateElement } from "./CreateElement";
 import { IGame } from "../interface/Interface";
-import { GameModel } from "../parser/gameModel";
+import { GameModel } from "../parser/GameModel";
 
 export class GameView {
 

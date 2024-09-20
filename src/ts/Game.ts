@@ -2,7 +2,7 @@ import { assetsList } from "../manifest/assetsList";
 import { GameController } from "./controller/GameController";
 import { IGame } from "./interface/Interface";
 import Loader from "./loader/loader";
-import { GameModel } from "./parser/gameModel";
+import { GameModel } from "./parser/GameModel";
 import { GameView } from "./view/GameView";
 
 export class Game {
