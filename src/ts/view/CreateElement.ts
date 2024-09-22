@@ -1,4 +1,4 @@
-import { Container, Sprite } from "pixi.js";
+import { Container, Graphics, Sprite } from "pixi.js";
 
 export class CreateElement {
 
@@ -16,7 +16,7 @@ export class CreateElement {
 
     public createImage(props: any): Sprite {
         const image = new Sprite(this.getTexture(props.texture));
-        props.name && (image.name = props.name);
+        props.name && (image.label = props.name);
         image.position.set(props.x || 0, props.y || 0);
         image.scale.set(props.scaleX || 1, props.scaleY || 1);
         this._add_(props.parent, image);
@@ -31,11 +31,33 @@ export class CreateElement {
 
     public createContainer(props: any): Container {
         const container = new Container();
-        container.name = props.name;
+        container.label = props.name;
         container.position.set(props.x || 0, props.y || 0);
         this._add_(props.parent, container);
 
         return container;
+    }
+
+    public createGraphic(props: any): Graphics {
+        const { x, y, w, h } = props;
+        const graphic = new Graphics();
+        graphic.beginFill(0xffffff);
+        graphic.drawRect(x, y, w, h);
+        graphic.endFill();
+        this._add_(props.parent, graphic);
+
+        return graphic;
+    }
+
+    public createRoundedRectangleGraphic(props: any): Graphics {
+        const { x, y, w, h, radius } = props;
+        const graphic = new Graphics();
+        graphic.beginFill(0xffffff);
+        graphic.drawRoundedRect(x, y, w, h, radius);
+        graphic.endFill();
+        this._add_(props.parent, graphic);
+
+        return graphic;
     }
 
     public getTexture(textureName: string): any {

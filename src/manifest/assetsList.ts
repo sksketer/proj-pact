@@ -19,13 +19,13 @@ export const assetsList = {
           "alias": ""
         },
         {
-          "name": "button",
-          "src": "button.png",
+          "name": "button_copy",
+          "src": "button_copy.png",
           "alias": ""
         },
         {
-          "name": "button_copy",
-          "src": "button_copy.png",
+          "name": "gameBG",
+          "src": "gameBG.jpg",
           "alias": ""
         },
         {
@@ -84,13 +84,18 @@ export const assetsList = {
           "alias": ""
         },
         {
-          "name": "Wild_game",
-          "src": "Wild_game.png",
+          "name": "playBtn",
+          "src": "playBtn.png",
           "alias": ""
         },
         {
-          "name": "_DSC1684.JPG",
-          "src": "_DSC1684.JPG",
+          "name": "spinBtn",
+          "src": "spinBtn.png",
+          "alias": ""
+        },
+        {
+          "name": "Wild_game",
+          "src": "Wild_game.png",
           "alias": ""
         }
       ]
