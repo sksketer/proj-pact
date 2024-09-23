@@ -2,6 +2,7 @@ import { Container, Graphics, Sprite } from "pixi.js";
 import { CreateElement } from "./CreateElement";
 import { IGame } from "../interface/Interface";
 import { GameModel } from "../parser/GameModel";
+import { Reel } from "../reel/Reel";
 
 export class GameView {
 
@@ -29,12 +30,8 @@ export class GameView {
         const symbolHeight: number = 134;
         
         for (let i: number = 0; i < reels; i++) {
-            const reel: Container = this.ce.createContainer({ name: `reel${i}`, parent: reelContainer });
-            reel.x = symbolWidth * i;
-            for (let j: number = 0, k: number = -1; j < symbolPerReel + 2; j++, k++) {
-                const symbol: Sprite = this.ce.createSymbol({ x: 0, y: 0, texture: "", parent: reel });
-                symbol.y = symbolHeight * k;
-            }
+            const reel: Reel = new Reel({ id: i, x: symbolWidth * i, symbolWidth, symbolHeight, reelWidth: symbolWidth, symbolPerReel, reelSet: [] }, [0,0,0])
+            reelContainer.addChild(reel);
         }
         
         const reelMask: Graphics = this.ce.createGraphic({x: 0, y: 0, w: symbolWidth * reels, h: symbolHeight * symbolPerReel, parent: reelContainer });

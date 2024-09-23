@@ -14,3 +14,13 @@ export interface IGameConfig {
     reels: number;
     symbolPerReel: number;
 }
+
+export interface IReelConfig {
+    id: number;
+    x: number;
+    symbolWidth: number;
+    symbolHeight: number;
+    reelWidth: number;
+    symbolPerReel: number;
+    reelSet: Array<number>;
+}

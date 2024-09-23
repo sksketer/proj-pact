@@ -1,6 +1,7 @@
 import { Application, Container, Renderer, Sprite } from "pixi.js";
 import { GameView } from "../view/GameView";
 import { IGame } from "../interface/Interface";
+import { Reel } from "../reel/Reel";
 
 export class GameController {
     private gameView: GameView;
@@ -12,7 +13,6 @@ export class GameController {
         this.gameView = gameView;
         this.initializeElement();
         this.bindHandler();
-        this.update();
     }
 
     private initializeElement(): void {
@@ -29,30 +29,19 @@ export class GameController {
 
     private startSpin(spinButton: Sprite): void {
         console.log("Spin button clicked");
-        spinButton.interactive = false;
+        // spinButton.interactive = false;
         this.isSpinning = true;
 
-        setTimeout(this.stopSpin.bind(this), 2000);
+        [...(this.reelsContainer.children as Array<Reel>).slice(0, -1)].forEach((reel: Reel, i: number) => {
+            setTimeout(reel.startSpin.bind(reel), 50 * (i + 1));
+            setTimeout(reel.stopSpin.bind(reel, [0, 0, 0]), 1000 * (i + 2));
+        });
+
     }
 
     private stopSpin(): void {
         console.log("spin stopped");
         this.isSpinning = false;
         this.spinButton.interactive = true;
-    }
-
-    private update(): void {
-        (((window as any).game as IGame).currentGame as Application<Renderer>).ticker.add((time) => {
-            if (this.isSpinning) {
-                (this.reelsContainer.children as Array<Container>).forEach((reel: Container) => {
-                    (reel.children as Array<Sprite>).forEach((sym: Sprite) => {
-                        sym.y += 20;
-                        if (sym.y > 400) {
-                            sym.y = 0;
-                        }
-                    });
-                });
-            }
-        });
     }
 }

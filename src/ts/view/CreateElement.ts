@@ -4,7 +4,6 @@ export class CreateElement {
 
     private viewComponents: Array<Container| Sprite> = [];
 
-
     public _add_(parent: any, child: any): void {
         if (parent) {
             parent.addChild(child);
