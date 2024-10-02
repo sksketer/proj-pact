@@ -14,7 +14,7 @@ export class Game {
     private openGame(): void {
         console.log("open game request send from here...");
         (((window as any).game as IGame).model as GameModel).setGameConfig({
-            grid: "3x3", reels: 3, symbolPerReel: 3
+            grid: "3x3", reels: 3, symbolPerReel: 3, defaultBet: 100
         });
     }
 

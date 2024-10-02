@@ -13,6 +13,7 @@ export interface IGameConfig {
     grid: string;
     reels: number;
     symbolPerReel: number;
+    defaultBet: number;
 }
 
 export interface IReelConfig {

@@ -8,7 +8,9 @@ export class GameModel {
         this.gameConfig = config;
     }
 
-    public getGameConfig(): IGameConfig {
-        return this.gameConfig;
+    public getGameConfig(property?: string | number): IGameConfig | string | number {
+        if (!property) return this.gameConfig;
+
+        return (this.gameConfig as any).property;
     }
 }

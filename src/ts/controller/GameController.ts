@@ -37,6 +37,8 @@ export class GameController {
             setTimeout(reel.stopSpin.bind(reel, [0, 0, 0]), 1000 * (i + 2));
         });
 
+        const request = { data: { bet: (window as any).game.model.getGameConfig().defaultBet }, type: '/spin'};
+        
     }
 
     private stopSpin(): void {

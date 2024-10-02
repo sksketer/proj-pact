@@ -1,6 +1,6 @@
 import { Container, Graphics, Sprite } from "pixi.js";
 import { CreateElement } from "./CreateElement";
-import { IGame } from "../interface/Interface";
+import { IGame, IGameConfig } from "../interface/Interface";
 import { GameModel } from "../parser/GameModel";
 import { Reel } from "../reel/Reel";
 
@@ -25,7 +25,7 @@ export class GameView {
 
         const reelContainer: Container = this.ce.createContainer({ y: 115, name: "reelsContainer", parent: mainContainer });
 
-        const { reels, symbolPerReel } = (((window as any).game as IGame).model as GameModel).getGameConfig();
+        const { reels, symbolPerReel } = (((window as any).game as IGame).model as GameModel).getGameConfig() as IGameConfig;
         const symbolWidth: number = 144;
         const symbolHeight: number = 134;
         

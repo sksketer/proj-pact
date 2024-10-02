@@ -10,6 +10,12 @@ console.warn(msg);
 
 /** ----------------------------------- */
 
+// add game on window object
+declare global {
+    interface Window {
+        game: IGame;
+    }
+}
 // store Game reference in Global game object
 let Game: IGame = {};
 (window as any).game = Game;
