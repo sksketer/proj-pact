@@ -21,6 +21,11 @@ export class GameView {
     private createScene(): void {
         const gameContainer: Container = this.ce.createContainer({ name: "gameContainer" })
         const background: Sprite = this.ce.createImage({ x: 0, y: 0, name: "background", texture: "gameBG", parent: gameContainer });
+        background.pivot.x = 1280 / 2;
+        background.pivot.y = 720 / 2;
+        background.x = 1280 / 2;
+        background.y = 720 / 2;
+
         const mainContainer: Container = this.ce.createContainer({ name: "gameMainContainer", parent: gameContainer })
 
         const reelContainer: Container = this.ce.createContainer({ y: 115, name: "reelsContainer", parent: mainContainer });
@@ -43,7 +48,9 @@ export class GameView {
         spinButton.mask = spinBntMask;
 
 
-        this.hideLoaderCallback?.();
+        setTimeout(() => {
+            this.hideLoaderCallback?.();
+        }, 1000);
     }
 
     public getElement(elementName: string): Container | Sprite | null {
@@ -58,12 +65,23 @@ export class GameView {
 
     public resize(): void {
         console.log("Game resized");
-        const mainContainer: Container = this.getElement('gameMainContainer') as Container;
         const canvasWidth: number = ((window as any).game as IGame).currentGame?.canvas.width as number;
         const canvasHeight: number = ((window as any).game as IGame).currentGame?.canvas.height as number;
-
+                
+        let max_x_ScaleFactor = Math.max(canvasWidth / window.outerWidth);
+        let max_y_ScaleFactor = Math.max(canvasHeight / window.outerHeight);
+        // set mainContainer scale for mic scale
+        const mainContainer: Container = this.getElement('gameMainContainer') as Container;
+        mainContainer.scale.set(max_x_ScaleFactor, max_y_ScaleFactor);
+        // mainContainer.position.set((canvasWidth-mainContainer.width)/2, (canvasHeight-mainContainer.height)/2);
         mainContainer.x = (Math.abs(canvasWidth - mainContainer.width))/2;
-        // mainContainer.y = (Math.abs(canvasHeight - mainContainer.height))/2;
+        
+        max_x_ScaleFactor = Math.max(window.outerWidth / canvasWidth);
+        max_y_ScaleFactor = Math.max(window.outerHeight / canvasHeight);
+        // set background scale for max-scale
+        const background: Sprite = this.getElement('background') as Sprite;
+        background.scale.set(max_x_ScaleFactor, max_y_ScaleFactor);
+        
     }
 
 }

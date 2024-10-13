@@ -18,6 +18,7 @@ export class CreateElement {
         props.name && (image.label = props.name);
         image.position.set(props.x || 0, props.y || 0);
         image.scale.set(props.scaleX || 1, props.scaleY || 1);
+        image.anchor.set(props.anchor || 0);
         this._add_(props.parent, image);
 
         return image;

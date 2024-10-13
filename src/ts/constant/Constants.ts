@@ -1,3 +1,9 @@
+export enum CanvasConstants {
+    myCanvas = "myCanvas",
+    canvasWidth = 1280,
+    canvasHeight = 720,
+}
+
 export enum Constants {
     // Number-constants
     HUNDERED = "100",
@@ -6,6 +12,4 @@ export enum Constants {
     loader = "loader",
     loadingMeter = "loading",
 
-    // Canvas
-    myCanvas = "myCanvas",
 }

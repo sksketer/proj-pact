@@ -26,6 +26,7 @@ class Loader {
                 detail: this.hideLoader.bind(this)
             });
             dispatchEvent(event);
+            counterDiv[0].textContent = `100%`;
             // this.hideLoader();
         } else {
             counterDiv[0].textContent = `${percentage}%`;

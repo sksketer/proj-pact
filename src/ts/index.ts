@@ -1,5 +1,5 @@
 import { Application, Assets } from 'pixi.js';
-import { Constants } from './constant/Constants';
+import { CanvasConstants, Constants } from './constant/Constants';
 import { Game as MainGame } from './Game';
 import { IGame } from './interface/Interface';
 import '../styles/style.less';
@@ -27,7 +27,11 @@ const app = new Application();
 
 const init = async () => {
 
-    await app.init({ background: '#1099bb', resizeTo: window }).then((res: any) => {
+    const extraOffset: number = 5;
+    const width: number = (window.innerWidth || Number(CanvasConstants.canvasWidth)) - extraOffset;
+    const height: number = (window.innerHeight || Number(CanvasConstants.canvasHeight)) - extraOffset;
+
+    await app.init({ width, height, background: '#1099bb' }).then((res: any) => {
         console.warn('promis resolve: ', res);
         document.body.appendChild(app.canvas);
     });
