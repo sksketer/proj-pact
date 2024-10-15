@@ -46,6 +46,10 @@ export class GameView {
         const spinButton: Sprite = this.ce.createImage({ x: 0, y: 0, name: "spinBtn", texture: "spinBtn", parent: buttonContainer, scaleX: 0.15, scaleY: 0.15 });
         const spinBntMask: Graphics = this.ce.createRoundedRectangleGraphic({ x: 7.5, y: 7.7, w: 80, h: 40, radius: 50 , parent: buttonContainer });
         spinButton.mask = spinBntMask;
+        
+        const betContainer: Container = this.ce.createContainer({ x: 0, y: 0, name: "betContainer", parent: mainContainer});
+        const decBetBtn: Sprite = this.ce.createImage({ x: 0, y: 0, name: "decBetBtn", texture: "spinBtn", parent: betContainer, scaleX: 0.15, scaleY: 0.15 });
+        const incBetBtn: Sprite = this.ce.createImage({ x: 0, y: 0, name: "incBetBtn", texture: "spinBtn", parent: betContainer, scaleX: 0.15, scaleY: 0.15 });
 
 
         setTimeout(() => {
