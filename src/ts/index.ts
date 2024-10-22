@@ -5,8 +5,6 @@ import { IGame } from './interface/Interface';
 import '../styles/style.less';
 import { GameModel } from './parser/GameModel';
 
-const msg: string = 'I Like you, shruti!';
-console.warn(msg);
 
 /** ----------------------------------- */
 
