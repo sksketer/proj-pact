@@ -5,7 +5,6 @@ import { IGame } from './interface/Interface';
 import '../styles/style.less';
 import { GameModel } from './parser/GameModel';
 
-
 /** ----------------------------------- */
 
 // add game on window object
@@ -43,9 +42,8 @@ const init = async () => {
 
     await Assets.init();
 
-    const mainGame = new MainGame();
+    const mainGame: MainGame = new MainGame();
     mainGame.startLoading();
-
 }
 
 init();
