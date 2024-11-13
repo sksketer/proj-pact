@@ -1,5 +1,6 @@
 import { Constants } from "../constant/Constants";
 import { Assets } from 'pixi.js';
+import { IGame } from "../interface/Interface";
 
 class Loader {
 
@@ -12,7 +13,9 @@ class Loader {
         const loadingMeter: any = this.loader[0].children[1];
         loadingMeter.textContent = `${Constants.HUNDERED}%`;
         if (loadingMeter.textContent === `${Constants.HUNDERED}%`) {
+            const gameCanvas = ((window as any).game as IGame).currentGame?.canvas;
             (this.loader[0] as HTMLElement).style.display = 'none';
+            gameCanvas && (gameCanvas.style.display = 'block');
         }
     };
 

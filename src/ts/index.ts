@@ -34,6 +34,9 @@ const init = async () => {
         document.body.appendChild(app.canvas);
     });
 
+    app.canvas.style.position = 'absolute';
+    app.canvas.style.display = 'none';
+
     Game.currentGame = app;
     Game.constants = Constants;
     Game.assetsCache = [];
