@@ -1,6 +1,7 @@
 import { Application, Container, Renderer, Sprite } from "pixi.js";
 import { IGame, IReelConfig } from "../interface/Interface";
 import { CreateElement } from "../view/CreateElement";
+import { SlotSymbol } from "../view/ui/SlotSymbol";
 
 export class Reel extends Container {
 
@@ -8,7 +9,7 @@ export class Reel extends Container {
     private isSpinning: boolean;
     private reelConfig: IReelConfig = undefined as any as IReelConfig;
     private spinSpeed: number;
-    private symArr: Array<Sprite>;
+    private symArr: Array<SlotSymbol>;
     private ce: CreateElement;
 
     constructor(config: IReelConfig, grid: Array<number>) {
@@ -37,7 +38,7 @@ export class Reel extends Container {
         reelGrid.push(this.getRandomSymbolID());
 
         reelGrid.forEach((id: number, index: number) => {
-            const sym: Sprite = this.ce.createSymbol({ x: 0, y: 0, texture: "", parent: this });
+            const sym: SlotSymbol = this.ce.createSymbol({ x: 0, y: 0, id, texture: "", parent: this });
             sym.y = this.reelConfig.symbolHeight * (index - 1);
             this.symArr.push(sym);
         });
@@ -65,7 +66,7 @@ export class Reel extends Container {
     }
 
     public spin(deltaTime?: any): void {
-        (this.children as Array<Sprite>).forEach((sym: Sprite) => {
+        (this.children as Array<SlotSymbol>).forEach((sym: SlotSymbol) => {
             // const speed: number = deltaTime < 0 ? deltaTime * this.spinSpeed : this.spinSpeed;
             sym.y += this.spinSpeed;
             if (sym.y > 400) {

@@ -1,4 +1,6 @@
-import { Container, Graphics, Sprite } from "pixi.js";
+import { AnimatedSprite, Container, Graphics, Sprite } from "pixi.js";
+import { SlotSymbol } from "./ui/SlotSymbol";
+import { IContainer, IImage, ISymbol } from "./UI_Interface";
 
 export class CreateElement {
 
@@ -13,29 +15,38 @@ export class CreateElement {
         this.viewComponents.push(child);
     }
 
-    public createImage(props: any): Sprite {
+    public createImage(props: IImage): Sprite {
         const image = new Sprite(this.getTexture(props.texture));
         props.name && (image.label = props.name);
         image.position.set(props.x || 0, props.y || 0);
         image.scale.set(props.scaleX || 1, props.scaleY || 1);
         image.anchor.set(props.anchor || 0);
+        image.visible = props.visible || true;
         this._add_(props.parent, image);
 
         return image;
     }
 
-    public createSymbol(props: any): Sprite {
+    public createSymbol(props: ISymbol): SlotSymbol {
         props.texture = this.getSymbolNameByID(props.id);
-        return this.createImage(props);
+        const symbol: SlotSymbol = new SlotSymbol(props);
+        return symbol;
     }
 
-    public createContainer(props: any): Container {
+    public createContainer(props: IContainer): Container {
         const container = new Container();
         container.label = props.name;
         container.position.set(props.x || 0, props.y || 0);
         this._add_(props.parent, container);
 
         return container;
+    }
+
+    public createAnimation(props: any): AnimatedSprite {
+        const animatedSprite: AnimatedSprite = new AnimatedSprite(props.frames);
+        this._add_(props.parent, animatedSprite);
+
+        return animatedSprite;
     }
 
     public createGraphic(props: any): Graphics {
