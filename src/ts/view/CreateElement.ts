@@ -74,7 +74,7 @@ export class CreateElement {
 
         const randomNumber: number = this.randomIntFromInterval(0, symbolsArray.length-1);
 
-        return symbolsArray[randomNumber];
+        return symbolsArray[id | randomNumber];
     }
 
     private randomIntFromInterval(min: number, max: number): number { 

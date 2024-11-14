@@ -75,7 +75,7 @@ export class GameView {
         let max_x_ScaleFactor = Math.max(canvasWidth / window.outerWidth);
         let max_y_ScaleFactor = Math.max(canvasHeight / window.outerHeight);
         // set mainContainer scale for mic scale
-        const mainContainer: Container = this.getElement('gameMainContainer') as Container;
+        const mainContainer: Container = this.getElement('gameContainer') as Container;
         mainContainer.scale.set(max_x_ScaleFactor, max_y_ScaleFactor);
         // mainContainer.position.set((canvasWidth-mainContainer.width)/2, (canvasHeight-mainContainer.height)/2);
         mainContainer.x = (Math.abs(canvasWidth - mainContainer.width))/2;

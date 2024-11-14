@@ -7,6 +7,7 @@ export class Reel extends Container {
     private reelId: number;
     private isSpinning: boolean;
     private reelConfig: IReelConfig = undefined as any as IReelConfig;
+    private spinSpeed: number;
     private symArr: Array<Sprite>;
     private ce: CreateElement;
 
@@ -15,6 +16,7 @@ export class Reel extends Container {
         this.reelId = config.id;
         this.isSpinning = false;
         this.reelConfig = config;
+        this.spinSpeed = 20;
         this.symArr = [];
         this.ce = new CreateElement();
         this.x = config.x;
@@ -51,18 +53,23 @@ export class Reel extends Container {
 
     public stopSpin(stopGrid: Array<number>): void {
         this.isSpinning = false;
-        stopGrid && this.setReel(stopGrid);
+        // stopGrid && this.setReel(stopGrid);
     }
 
     private update(): void {
         (((window as any).game as IGame).currentGame as Application<Renderer>).ticker.add((time) => {
             if (this.isSpinning) {
-                (this.children as Array<Sprite>).forEach((sym: Sprite) => {
-                    sym.y += 20;
-                    if (sym.y > 400) {
-                        sym.y = 0;
-                    }
-                });
+                this.spin(time.elapsedMS);
+            }
+        });
+    }
+
+    public spin(deltaTime?: any): void {
+        (this.children as Array<Sprite>).forEach((sym: Sprite) => {
+            // const speed: number = deltaTime < 0 ? deltaTime * this.spinSpeed : this.spinSpeed;
+            sym.y += this.spinSpeed;
+            if (sym.y > 400) {
+                sym.y = 0;
             }
         });
     }
