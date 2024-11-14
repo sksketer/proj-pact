@@ -35,7 +35,8 @@ export class GameView {
         const symbolHeight: number = 134;
         
         for (let i: number = 0; i < reels; i++) {
-            const reel: Reel = new Reel({ id: i, x: symbolWidth * i, symbolWidth, symbolHeight, reelWidth: symbolWidth, symbolPerReel, reelSet: [] }, [0,0,0])
+            const reelSet: Array<number> = (((window as any).game as IGame).model as GameModel).getReelSet()[i];
+            const reel: Reel = new Reel({ id: i, x: symbolWidth * i, symbolWidth, symbolHeight, reelWidth: symbolWidth, symbolPerReel, reelSet }, [0,0,0])
             reelContainer.addChild(reel);
         }
         

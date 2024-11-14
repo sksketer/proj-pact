@@ -13,4 +13,10 @@ export class GameModel {
 
         return (this.gameConfig as any).property;
     }
+
+    public getReelSet(): Array<Array<number>> {
+        return [...Array(3)].map(() =>
+            [...Array(5)].map(() => Math.floor(Math.random() * 6))
+        );
+    }
 }
