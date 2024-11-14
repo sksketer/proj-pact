@@ -1,4 +1,4 @@
-import { Application } from "pixi.js";
+import { Application, Container } from "pixi.js";
 import { Constants } from "../constant/Constants";
 import { GameModel } from "../parser/GameModel";
 
